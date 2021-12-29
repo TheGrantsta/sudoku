@@ -2,11 +2,18 @@
 
 public class Cell
 {
-    public List<int> Numbers { get; set; }
+    private readonly List<int> _numbers;
+
+    public IReadOnlyList<int> Numbers => _numbers;
 
     public Cell()
     {
-        Numbers = new List<int>();
+        _numbers = new List<int>();
+    }
+
+    public void Add(int i)
+    {
+        _numbers.Add(i);
     }
 
     public bool IsEmpty()

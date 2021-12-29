@@ -18,7 +18,7 @@ public class CellTests
     {
         var cell = new Cell();
 
-        cell.Numbers.Add(1);
+        cell.Add(1);
 
         cell.IsEmpty().Should().BeFalse();
     }
