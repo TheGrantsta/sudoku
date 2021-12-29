@@ -20,5 +20,10 @@ public class Cell
     {
         return !Numbers.Any();
     }
+
+    public bool IsFound()
+    {
+        throw new NotImplementedException();
+    }
 }
 

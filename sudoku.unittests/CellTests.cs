@@ -22,4 +22,12 @@ public class CellTests
 
         cell.IsEmpty().Should().BeFalse();
     }
+
+    [Fact]
+    public void ShouldReturnIsFoundIsTrueWhenNumbersHasOnlyOneNumber()
+    {
+        var cell = new Cell();
+
+        cell.IsFound().Should().BeTrue();
+    }
 }
