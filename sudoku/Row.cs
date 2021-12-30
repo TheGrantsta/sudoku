@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace sudoku
+﻿namespace sudoku
 {
-	public class Row
+    public class Row
 	{
 		private readonly List<Square> _squares;
 
