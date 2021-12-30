@@ -76,4 +76,13 @@ public class CellTests
         cell.Numbers[1].Should().Be(2);
     }
 
+    [Fact]
+    public void ShouldThrowArgumentExceptionWhenRemoveNumbersIsGreaterThanNine()
+    {
+        var cell = new Cell();
+
+        Action add = () => cell.Remove(10);
+
+        add.Should().Throw<ArgumentOutOfRangeException>();
+    }
 }

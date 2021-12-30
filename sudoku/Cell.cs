@@ -28,6 +28,11 @@ public class Cell
         }
     }
 
+    public void Remove(int i)
+    {
+        throw new NotImplementedException();
+    }
+
     private static bool IsOutOfRange(int i)
     {
         return i < 1 || i > 9;
@@ -37,5 +42,7 @@ public class Cell
     {
         return !_numbers.Any(n => n == i);
     }
+
+
 }
 
