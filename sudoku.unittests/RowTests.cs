@@ -1,10 +1,9 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
 namespace sudoku.unittests
 {
-	public class RowTests
+    public class RowTests
 	{
 		[Fact]
 		public void ShouldReturnListOfSquares()
