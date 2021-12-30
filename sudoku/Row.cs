@@ -8,9 +8,17 @@ namespace sudoku
 
 		public IReadOnlyList<Square> Squares => _squares;
 
-		public Row()
+		public Row(int i)
         {
 			_squares = new List<Square>();
+
+			for (var x = 1; x < 10; x++)
+			{
+				_squares.Add(
+					new Square(
+						new Cell(),
+						new Coordinate(i, x)));
+			}
         }
 	}
 }
