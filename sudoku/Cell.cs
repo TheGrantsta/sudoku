@@ -17,6 +17,11 @@ public class Cell
 
     public void Add(int i)
     {
+        if (i < 1 || i > 9)
+        {
+            throw new ArgumentOutOfRangeException($"Add parameter {i} out of range");
+        }
+
         _numbers.Add(i);
     }
 }
