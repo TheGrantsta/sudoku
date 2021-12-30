@@ -22,12 +22,20 @@ public class Cell
             throw new ArgumentOutOfRangeException($"Add parameter {i} out of range");
         }
 
-        _numbers.Add(i);
+        if (IsUnique(i))
+        {
+            _numbers.Add(i);
+        }
     }
 
     private static bool IsOutOfRange(int i)
     {
         return i < 1 || i > 9;
+    }
+
+    private bool IsUnique(int i)
+    {
+        return !_numbers.Any(n => n == i);
     }
 }
 

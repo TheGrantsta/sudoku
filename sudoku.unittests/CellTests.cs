@@ -61,4 +61,19 @@ public class CellTests
 
         add.Should().Throw<ArgumentOutOfRangeException>();
     }
+
+    [Fact]
+    public void ShouldReturnDistinctListOfNumbers()
+    {
+        var cell = new Cell();
+
+        cell.Add(1);
+        cell.Add(2);
+        cell.Add(1);
+
+        cell.Numbers.Count.Should().Be(2);
+        cell.Numbers[0].Should().Be(1);
+        cell.Numbers[1].Should().Be(2);
+    }
+
 }
