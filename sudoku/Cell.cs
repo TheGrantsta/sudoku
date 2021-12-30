@@ -2,7 +2,7 @@
 
 public class Cell
 {
-    private readonly List<int> _numbers;
+    private List<int> _numbers;
 
     public IReadOnlyList<int> Numbers => _numbers;
 
@@ -30,7 +30,15 @@ public class Cell
 
     public void Remove(int i)
     {
-        throw new NotImplementedException();
+        if (IsOutOfRange(i))
+        {
+            throw new ArgumentOutOfRangeException($"Remove parameter {i} out of range");
+        }
+
+        if (IsNotFound())
+        {
+            _numbers = _numbers.Where(n => n != i).ToList();
+        }
     }
 
     private static bool IsOutOfRange(int i)
@@ -43,6 +51,9 @@ public class Cell
         return !_numbers.Any(n => n == i);
     }
 
-
+    private bool IsNotFound()
+    {
+        return !IsFound;
+    }
 }
 
