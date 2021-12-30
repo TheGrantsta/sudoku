@@ -16,9 +16,16 @@
 
 		private static void RowOuput(Row r)
         {
-			((List<Square>)r.Squares).ForEach(s => Console.Write("|_|"));
+			((List<Square>)r.Squares).ForEach(s => SquareOutput(s));
 			
 			Console.WriteLine("");
+        }
+
+		private static void SquareOutput(Square square)
+        {
+			var cellString = square.Cell.IsFound ? $"|{square.Cell.Numbers.First()}|" : "|_|";
+
+			Console.Write(cellString);
         }
 	}
 }

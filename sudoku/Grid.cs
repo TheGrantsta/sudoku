@@ -15,6 +15,18 @@
                 _rows.Add(new Row(r));
             }
 		}
+
+		public void Set(string[] values)
+		{
+			foreach (var value in values)
+			{
+				var row = int.Parse(value.Substring(0, 1)) - 1;
+				var column = int.Parse(value.Substring(1, 1)) - 1;
+				var number = int.Parse(value.Substring(2, 1));
+
+				_rows[row].Squares[column].Cell.Add(number);
+			}
+		}
 	}
 }
 
