@@ -6,6 +6,10 @@ public class Cell
 
     public IReadOnlyList<int> Numbers => _numbers;
 
+    public bool IsEmpty => !Numbers.Any();
+
+    public bool IsFound => Numbers.Count == 1;
+
     public Cell()
     {
         _numbers = new List<int>();
@@ -14,16 +18,6 @@ public class Cell
     public void Add(int i)
     {
         _numbers.Add(i);
-    }
-
-    public bool IsEmpty()
-    {
-        return !Numbers.Any();
-    }
-
-    public bool IsFound()
-    {
-        throw new NotImplementedException();
     }
 }
 

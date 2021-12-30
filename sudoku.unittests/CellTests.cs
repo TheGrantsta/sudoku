@@ -10,7 +10,7 @@ public class CellTests
     {
         var cell = new Cell();
 
-        cell.IsEmpty().Should().BeTrue();
+        cell.IsEmpty.Should().BeTrue();
     }
 
     [Fact]
@@ -20,7 +20,15 @@ public class CellTests
 
         cell.Add(1);
 
-        cell.IsEmpty().Should().BeFalse();
+        cell.IsEmpty.Should().BeFalse();
+    }
+
+    [Fact]
+    public void ShouldReturnIsFoundIsFalseWhenNumbersHasOnlyOneNumber()
+    {
+        var cell = new Cell();
+
+        cell.IsFound.Should().BeFalse();
     }
 
     [Fact]
@@ -28,6 +36,8 @@ public class CellTests
     {
         var cell = new Cell();
 
-        cell.IsFound().Should().BeTrue();
+        cell.Add(9);
+
+        cell.IsFound.Should().BeTrue();
     }
 }
