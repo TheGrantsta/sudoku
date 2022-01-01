@@ -6,17 +6,20 @@
 
 		public IReadOnlyList<Square> Squares => _squares;
 
-		public Row(int i)
+		public Row()
         {
 			_squares = new List<Square>();
+        }
 
-			for (var x = 1; x < 10; x++)
-			{
-				_squares.Add(
-					new Square(
-						new Cell(),
-						new Coordinate(i, x)));
-			}
+        public void Initialise(int i)
+        {
+            for (var x = 1; x < 10; x++)
+            {
+                _squares.Add(
+                    new Square(
+                        new Cell(),
+                        new Coordinate(i, x)));
+            }
         }
 
         public void Resolve()

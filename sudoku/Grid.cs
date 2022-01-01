@@ -9,11 +9,18 @@
 		public Grid()
 		{
 			_rows = new List<Row>();
+		}
 
-            for (int r = 1; r < 10; r++)
-            {
-                _rows.Add(new Row(r));
-            }
+		public void Initialise()
+		{
+			for (int r = 1; r < 10; r++)
+			{
+				var row = new Row();
+
+				row.Initialise(r);
+
+				_rows.Add(row);
+			}
 		}
 
 		public void Set(string[] values)
@@ -27,6 +34,11 @@
 				_rows[row].Squares[column].Cell.Add(number);
 			}
 		}
+
+		public void Resolve()
+        {
+			_rows.ForEach(r => r.Resolve());
+        }
 	}
 }
 

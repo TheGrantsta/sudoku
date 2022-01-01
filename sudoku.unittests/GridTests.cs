@@ -11,6 +11,8 @@ namespace sudoku.unittests
         {
 			var grid = new Grid();
 
+			grid.Initialise();
+
 			grid.Rows.Should().NotBeNullOrEmpty();
 			grid.Rows.Count.Should().Be(9);
         }
@@ -19,6 +21,8 @@ namespace sudoku.unittests
 		public void ShouldSetInitialValueForCoordinate()
         {
 			var grid = new Grid();
+
+			grid.Initialise();
 
 			grid.Set(new[] { "165" });
 

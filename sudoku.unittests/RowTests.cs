@@ -9,17 +9,21 @@ namespace sudoku.unittests
 		[Fact]
 		public void ShouldReturnListOfSquares()
         {
-			var row = new Row(1);
+			var row = new Row();
+
+			row.Initialise(2);
 
 			row.Squares.Should().NotBeNullOrEmpty();
 			row.Squares.All(s => s.Cell.IsEmpty).Should().BeTrue();
-			row.Squares.All(s => s.Coordinate.DisplayName.StartsWith("A")).Should().BeTrue();
+			row.Squares.All(s => s.Coordinate.DisplayName.StartsWith("B")).Should().BeTrue();
 		}
 
 		[Fact]
 		public void ShouldFindLastNumberInRow()
 		{
-			var row = new Row(2);
+			var row = new Row();
+
+			row.Initialise(2);
 
 			for (var x = 0; x < 9; x++)
 			{
@@ -35,7 +39,9 @@ namespace sudoku.unittests
 		[Fact]
 		public void ShouldFindLastNumberInRowWhenMiddleSquareIsEmpty()
 		{
-			var row = new Row(2);
+			var row = new Row();
+
+			row.Initialise(2);
 
 			for (var x = 0; x < 9; x++)
 			{
