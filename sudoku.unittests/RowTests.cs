@@ -21,14 +21,23 @@ namespace sudoku.unittests
 			_row = new Row(_resolver);
 		}
 
-		[Fact]
-		public void ShouldReturnListOfSquares()
+		[Theory]
+        [InlineData(1, "A")]
+		[InlineData(2, "B")]
+		[InlineData(3, "C")]
+		[InlineData(4, "D")]
+		[InlineData(5, "E")]
+		[InlineData(6, "F")]
+		[InlineData(7, "G")]
+		[InlineData(8, "H")]
+		[InlineData(9, "I")]
+		public void ShouldReturnListOfSquares(int rowNumber, string columnLetter)
         {
-			_row.Initialise(2);
+			_row.Initialise(rowNumber);
 
 			_row.Squares.Should().NotBeNullOrEmpty();
 			_row.Squares.All(s => s.Cell.IsEmpty).Should().BeTrue();
-			_row.Squares.All(s => s.Coordinate.DisplayName.StartsWith("B")).Should().BeTrue();
+			_row.Squares.All(s => s.Coordinate.DisplayName.StartsWith(columnLetter)).Should().BeTrue();
 		}
 
 		[Fact]
