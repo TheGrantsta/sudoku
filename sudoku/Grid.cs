@@ -3,19 +3,21 @@
     public class Grid
 	{
 		private readonly List<Row> _rows;
+		private readonly IResolver _resolver;
 
 		public IReadOnlyList<Row> Rows => _rows;
 
-		public Grid()
+		public Grid(IResolver resolver)
 		{
 			_rows = new List<Row>();
+			_resolver = resolver;
 		}
 
 		public void Initialise()
 		{
 			for (int r = 1; r < 10; r++)
 			{
-				var row = new Row();
+				var row = new Row(_resolver);
 
 				row.Initialise(r);
 

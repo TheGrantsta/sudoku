@@ -5,7 +5,7 @@ Console.WriteLine("Sudoku resolver!");
 Console.WriteLine("****************");
 Console.WriteLine("");
 
-var grid = new Grid();
+var grid = new Grid(new Resolver());
 
 grid.Initialise();
 

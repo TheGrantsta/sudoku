@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using FakeItEasy;
 using FluentAssertions;
 using Xunit;
 
@@ -9,7 +10,7 @@ namespace sudoku.unittests
 		[Fact]
 		public void ShouldReturnEmptyRowsForGrid()
         {
-			var grid = new Grid();
+			var grid = new Grid(A.Fake<IResolver>());
 
 			grid.Initialise();
 
@@ -20,7 +21,7 @@ namespace sudoku.unittests
 		[Fact]
 		public void ShouldSetInitialValueForCoordinate()
         {
-			var grid = new Grid();
+			var grid = new Grid(A.Fake<IResolver>());
 
 			grid.Initialise();
 

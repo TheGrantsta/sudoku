@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using FakeItEasy;
 using FluentAssertions;
 using Xunit;
 
@@ -6,55 +8,68 @@ namespace sudoku.unittests
 {
     public class RowTests
 	{
+		private readonly IResolver _resolver;
+		private readonly Row _row;
+
+		public RowTests()
+		{
+			_resolver = A.Fake<IResolver>();
+
+			A.CallTo(() => _resolver.GetAllNumbers()).Returns(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+			A.CallTo(() => _resolver.IsOneSquareEmpty(A<List<Square>>.Ignored)).Returns(true);
+
+			_row = new Row(_resolver);
+		}
+
 		[Fact]
 		public void ShouldReturnListOfSquares()
         {
-			var row = new Row();
+			_row.Initialise(2);
 
-			row.Initialise(2);
-
-			row.Squares.Should().NotBeNullOrEmpty();
-			row.Squares.All(s => s.Cell.IsEmpty).Should().BeTrue();
-			row.Squares.All(s => s.Coordinate.DisplayName.StartsWith("B")).Should().BeTrue();
+			_row.Squares.Should().NotBeNullOrEmpty();
+			_row.Squares.All(s => s.Cell.IsEmpty).Should().BeTrue();
+			_row.Squares.All(s => s.Coordinate.DisplayName.StartsWith("B")).Should().BeTrue();
 		}
 
 		[Fact]
 		public void ShouldFindLastNumberInRow()
 		{
-			var row = new Row();
+			A.CallTo(() => _resolver.GetFoundNumbers(A<List<Square>>.Ignored)).Returns(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 });
 
-			row.Initialise(2);
+			_row.Initialise(2);
 
-			for (var x = 0; x < 9; x++)
+			for (var x = 0; x < 8; x++)
 			{
-				row.Squares[x].Cell.Add(x + 1);
+				_row.Squares[x].Cell.Add(x + 1);
 			}
 
-			row.Resolve();
+			_row.Resolve();
 
-			row.Squares.All(s => s.Cell.IsFound).Should().BeTrue();
-			row.Squares.Last().Cell.Numbers.First().Should().Be(9);
+			_row.Squares.All(s => s.Cell.IsFound).Should().BeTrue();
+			_row.Squares.Last().Cell.Numbers.First().Should().Be(9);
 		}
 
 		[Fact]
 		public void ShouldFindLastNumberInRowWhenMiddleSquareIsEmpty()
 		{
-			var row = new Row();
+			A.CallTo(() => _resolver.GetFoundNumbers(A<List<Square>>.Ignored)).Returns(new List<int> { 1, 2, 3, 4, 6, 7, 8, 9 });
 
-			row.Initialise(2);
+			_row.Initialise(2);
 
 			for (var x = 0; x < 9; x++)
 			{
 				if (x != 5)
 				{
-					row.Squares[x].Cell.Add(x + 1);
+					_row.Squares[x].Cell.Add(x + 1);
 				}
 			}
 
-			row.Resolve();
+			_row.Resolve();
 
-			row.Squares.All(s => s.Cell.IsFound).Should().BeTrue();
-			row.Squares[5].Cell.Numbers.First().Should().Be(6);
+			_row.Squares.All(s => s.Cell.IsFound).Should().BeTrue();
+			_row.Squares[0].Cell.Numbers.First().Should().Be(1);
+			_row.Squares[4].Cell.Numbers.First().Should().Be(5);
+			_row.Squares[8].Cell.Numbers.First().Should().Be(9);
 		}
 	}
 }

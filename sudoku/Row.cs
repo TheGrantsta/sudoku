@@ -3,12 +3,14 @@
     public class Row
 	{
 		private readonly List<Square> _squares;
+        private readonly IResolver _resolver;
 
 		public IReadOnlyList<Square> Squares => _squares;
 
-		public Row()
+		public Row(IResolver resolver)
         {
 			_squares = new List<Square>();
+            _resolver = resolver;
         }
 
         public void Initialise(int i)
@@ -24,27 +26,12 @@
 
         public void Resolve()
         {
-            if (IsOneSquareEmpty())
+            if (_resolver.IsOneSquareEmpty(_squares))
             {
-                var missingNumber = GetAllNumbers().Except<int>(GetFoundNumbers()).First();
+                var missingNumber = _resolver.GetAllNumbers().Except<int>(_resolver.GetFoundNumbers(_squares)).First();
 
                 _squares.Single(s => s.Cell.IsEmpty).Cell.Add(missingNumber);
             }
-        }
-
-        private bool IsOneSquareEmpty()
-        {
-            return _squares.Count(s => !s.Cell.IsFound) == 1;
-        }
-
-        private static List<int> GetAllNumbers()
-        {
-            return new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        }
-
-        private List<int> GetFoundNumbers()
-        {
-            return _squares.Where(s => s.Cell.IsFound).Select(s => s.Cell.Numbers.First()).ToList();
         }
     }
 }
