@@ -2,15 +2,15 @@
 {
     public class Row
 	{
-		private readonly List<Square> _squares;
-        private readonly IResolver _resolver;
+		private readonly IResolver _resolver;
+        private readonly List<Square> _squares;
 
-		public IReadOnlyList<Square> Squares => _squares;
+        public IReadOnlyList<Square> Squares => _squares;
 
 		public Row(IResolver resolver)
         {
-			_squares = new List<Square>();
             _resolver = resolver;
+            _squares = new List<Square>();
         }
 
         public void Initialise(int i)

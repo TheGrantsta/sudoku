@@ -2,15 +2,18 @@
 {
     public class Grid
 	{
-		private readonly List<Row> _rows;
 		private readonly IResolver _resolver;
+		private readonly List<Row> _rows;
+		private readonly List<Column> _columns;
 
 		public IReadOnlyList<Row> Rows => _rows;
+		public IReadOnlyList<Column> Columns => _columns;
 
 		public Grid(IResolver resolver)
 		{
-			_rows = new List<Row>();
 			_resolver = resolver;
+			_rows = new List<Row>();
+			_columns = new List<Column>();
 		}
 
 		public void Initialise()
@@ -23,6 +26,15 @@
 
 				_rows.Add(row);
 			}
+
+			for(int c = 1; c < 10; c++)
+            {
+				var column = new Column(_resolver);
+
+				column.Initialise(_rows, c);
+
+				_columns.Add(column);
+            }
 		}
 
 		public void Set(string[] values)
@@ -38,9 +50,9 @@
 		}
 
 		public void Resolve()
-        {
+		{
 			_rows.ForEach(r => r.Resolve());
-        }
+		}
 	}
 }
 
