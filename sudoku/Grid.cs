@@ -17,27 +17,13 @@
 		}
 
 		public void Initialise()
-		{
-			for (int r = 1; r < 10; r++)
-			{
-				var row = new Row(_resolver);
+        {
+            InitialiseRows();
 
-				row.Initialise(r);
+            InitialiseColumns();
+        }
 
-				_rows.Add(row);
-			}
-
-			for(int c = 1; c < 10; c++)
-            {
-				var column = new Column(_resolver);
-
-				column.Initialise(_rows, c);
-
-				_columns.Add(column);
-            }
-		}
-
-		public void Set(string[] values)
+        public void Set(string[] values)
 		{
 			foreach (var value in values)
 			{
@@ -52,6 +38,30 @@
 		public void Resolve()
 		{
 			_rows.ForEach(r => r.Resolve());
+		}
+
+		private void InitialiseRows()
+		{
+			for (int r = 1; r < 10; r++)
+			{
+				var row = new Row(_resolver);
+
+				row.Initialise(r);
+
+				_rows.Add(row);
+			}
+		}
+
+		private void InitialiseColumns()
+		{
+			for (int c = 1; c < 10; c++)
+			{
+				var column = new Column(_resolver);
+
+				column.Initialise(_rows, c);
+
+				_columns.Add(column);
+			}
 		}
 	}
 }
