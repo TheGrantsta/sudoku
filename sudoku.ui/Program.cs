@@ -22,6 +22,7 @@ grid.Set(new[] { "923", "964", "976" });
 //Manual testing co-ordinates
 grid.Set(new[] { "183", "586", "988" });
 grid.Set(new[] { "857", "862", "895" });
+grid.Set(new[] { "992" });
 
 var render = new Render(grid);
 

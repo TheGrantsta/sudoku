@@ -5,15 +5,18 @@
 		private readonly IResolver _resolver;
 		private readonly List<Row> _rows;
 		private readonly List<Column> _columns;
+		private readonly List<Box> _boxes;
 
 		public IReadOnlyList<Row> Rows => _rows;
 		public IReadOnlyList<Column> Columns => _columns;
+		public IReadOnlyList<Box> Boxes => _boxes;
 
 		public Grid(IResolver resolver)
 		{
 			_resolver = resolver;
 			_rows = new List<Row>();
 			_columns = new List<Column>();
+			_boxes = new List<Box>();
 		}
 
 		public void Initialise()
@@ -21,6 +24,8 @@
             InitialiseRows();
 
             InitialiseColumns();
+
+            InitialiseBoxes();
         }
 
         public void Set(string[] values)
@@ -40,6 +45,8 @@
 			_rows.ForEach(r => r.Resolve());
 
 			_columns.ForEach(c => c.Resolve());
+
+			_boxes.ForEach(b => b.Resolve());
 		}
 
 		private void InitialiseRows()
@@ -63,6 +70,21 @@
 				column.Initialise(_rows, c);
 
 				_columns.Add(column);
+			}
+		}
+
+		private void InitialiseBoxes()
+		{
+			for (var r = 0; r < 3; r++)
+			{
+				for (var c = 0; c < 3; c++)
+				{
+					var box = new Box(_resolver);
+
+					box.Initialise(_rows, new Coordinate(r * 3 + 1, c * 3 + 1));
+
+					_boxes.Add(box);
+				}
 			}
 		}
 	}
