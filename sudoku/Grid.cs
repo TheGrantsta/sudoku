@@ -38,6 +38,8 @@
 		public void Resolve()
 		{
 			_rows.ForEach(r => r.Resolve());
+
+			_columns.ForEach(c => c.Resolve());
 		}
 
 		private void InitialiseRows()

@@ -19,6 +19,10 @@ grid.Set(new[] { "735", "762", "787", "794" });
 grid.Set(new[] { "828", "834", "846", "879", "881" });
 grid.Set(new[] { "923", "964", "976" });
 
+//Manual testing co-ordinates
+grid.Set(new[] { "183", "586", "988" });
+grid.Set(new[] { "857", "862", "895" });
+
 var render = new Render(grid);
 
 render.Display();
@@ -31,8 +35,6 @@ Console.WriteLine("Hit ENTER key to see answer");
 Console.ReadKey();
 
 Console.WriteLine("");
-
-grid.Set(new[] { "857", "862", "895" });
 
 grid.Resolve();
 

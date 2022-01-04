@@ -31,7 +31,11 @@ namespace sudoku.unittests
 			grid.Rows[0].Squares[5].Cell.IsFound.Should().BeTrue();
 			grid.Rows[0].Squares[5].Cell.Numbers.Single().Should().Be(5);
 			grid.Rows[0].Squares[5].Coordinate.Should().BeEquivalentTo<Coordinate>(new Coordinate(1, 6));
-        }
+
+			grid.Columns[5].Squares[0].Cell.IsEmpty.Should().BeFalse();
+			grid.Columns[5].Squares[0].Cell.IsFound.Should().BeTrue();
+			grid.Columns[5].Squares[0].Cell.Numbers.Single().Should().Be(5);
+		}
 	}
 }
 
