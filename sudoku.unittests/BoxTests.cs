@@ -28,7 +28,7 @@ namespace sudoku.unittests
 				row.Initialise(x);
 
 				_rows.Add(row);
-            }
+			}
 		}
 
 		[Theory]
@@ -51,6 +51,34 @@ namespace sudoku.unittests
 			box.Squares.Count.Should().Be(9);
 			box.Squares.First().Coordinate.DisplayName.Should().Be(topLeft);
 			box.Squares.Last().Coordinate.DisplayName.Should().Be(bottomRight);
+		}
+
+		[Fact]
+		public void ShouldFindLastNumberInBox()
+		{
+			A.CallTo(() => _resolver.GetFoundNumbers(A<List<Square>>.Ignored))
+				.Returns(new List<int> { 1, 2, 3, 5, 6, 7, 8, 9 });
+
+			_rows[0].Squares[0].Cell.Add(1);
+			_rows[0].Squares[1].Cell.Add(2);
+			_rows[0].Squares[2].Cell.Add(3);
+			_rows[1].Squares[1].Cell.Add(5);
+			_rows[1].Squares[2].Cell.Add(6);
+			_rows[2].Squares[0].Cell.Add(7);
+			_rows[2].Squares[1].Cell.Add(8);
+			_rows[2].Squares[2].Cell.Add(9);
+
+			var box = new Box(_resolver);
+
+			box.Initialise(_rows, new Coordinate(1, 1));
+
+			box.Resolve();
+
+			box.Squares
+				.All(c => c.Cell.IsFound)
+				.Should()
+				.BeTrue();
+			box.Squares[3].Cell.Numbers.First().Should().Be(4);
 		}
 	}
 }

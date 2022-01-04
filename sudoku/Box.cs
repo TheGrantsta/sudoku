@@ -25,6 +25,16 @@
                 }
             }
         }
+
+        public void Resolve()
+        {
+            if (_resolver.IsOneSquareEmpty(_squares))
+            {
+                var missingNumber = _resolver.GetAllNumbers().Except<int>(_resolver.GetFoundNumbers(_squares)).First();
+
+                _squares.Single(s => s.Cell.IsEmpty).Cell.Add(missingNumber);
+            }
+        }
     }
 }
 
