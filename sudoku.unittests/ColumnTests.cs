@@ -53,7 +53,7 @@ namespace sudoku.unittests
 
 			for(var r = 0; r < 8; r++)
             {
-				_rows[r].Squares[0].Cell.Add(r + 1);
+				_rows[r].Squares[0].Cell.Set(r + 1);
 			}
 
 			var column = new Column(_resolver);
@@ -63,11 +63,11 @@ namespace sudoku.unittests
 			column.Resolve();
 
 			column.Squares
-				.All(c => c.Cell.IsFound)
+				.All(c => c.Cell.IsNumberFound)
 				.Should()
 				.BeTrue();
-			column.Squares.First().Cell.Numbers.First().Should().Be(1);
-			column.Squares.Last().Cell.Numbers.First().Should().Be(9);
+			column.Squares.First().Cell.Get().Should().Be(1);
+			column.Squares.Last().Cell.Get().Should().Be(9);
 		}
 	}
 }

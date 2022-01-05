@@ -59,14 +59,14 @@ namespace sudoku.unittests
 			A.CallTo(() => _resolver.GetFoundNumbers(A<List<Square>>.Ignored))
 				.Returns(new List<int> { 1, 2, 3, 5, 6, 7, 8, 9 });
 
-			_rows[0].Squares[0].Cell.Add(1);
-			_rows[0].Squares[1].Cell.Add(2);
-			_rows[0].Squares[2].Cell.Add(3);
-			_rows[1].Squares[1].Cell.Add(5);
-			_rows[1].Squares[2].Cell.Add(6);
-			_rows[2].Squares[0].Cell.Add(7);
-			_rows[2].Squares[1].Cell.Add(8);
-			_rows[2].Squares[2].Cell.Add(9);
+			_rows[0].Squares[0].Cell.Set(1);
+			_rows[0].Squares[1].Cell.Set(2);
+			_rows[0].Squares[2].Cell.Set(3);
+			_rows[1].Squares[1].Cell.Set(5);
+			_rows[1].Squares[2].Cell.Set(6);
+			_rows[2].Squares[0].Cell.Set(7);
+			_rows[2].Squares[1].Cell.Set(8);
+			_rows[2].Squares[2].Cell.Set(9);
 
 			var box = new Box(_resolver);
 
@@ -75,10 +75,10 @@ namespace sudoku.unittests
 			box.Resolve();
 
 			box.Squares
-				.All(c => c.Cell.IsFound)
+				.All(c => c.Cell.IsNumberFound)
 				.Should()
 				.BeTrue();
-			box.Squares[3].Cell.Numbers.First().Should().Be(4);
+			box.Squares[3].Cell.Get().Should().Be(4);
 		}
 	}
 }

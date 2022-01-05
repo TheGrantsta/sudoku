@@ -49,13 +49,13 @@ namespace sudoku.unittests
 
 			for (var x = 0; x < 8; x++)
 			{
-				_row.Squares[x].Cell.Add(x + 1);
+				_row.Squares[x].Cell.Set(x + 1);
 			}
 
 			_row.Resolve();
 
-			_row.Squares.All(s => s.Cell.IsFound).Should().BeTrue();
-			_row.Squares.Last().Cell.Numbers.First().Should().Be(9);
+			_row.Squares.All(s => s.Cell.IsNumberFound).Should().BeTrue();
+			_row.Squares.Last().Cell.Get().Should().Be(9);
 		}
 
 		[Fact]
@@ -69,16 +69,16 @@ namespace sudoku.unittests
 			{
 				if (x != 5)
 				{
-					_row.Squares[x].Cell.Add(x + 1);
+					_row.Squares[x].Cell.Set(x + 1);
 				}
 			}
 
 			_row.Resolve();
 
-			_row.Squares.All(s => s.Cell.IsFound).Should().BeTrue();
-			_row.Squares[0].Cell.Numbers.First().Should().Be(1);
-			_row.Squares[4].Cell.Numbers.First().Should().Be(5);
-			_row.Squares[8].Cell.Numbers.First().Should().Be(9);
+			_row.Squares.All(s => s.Cell.IsNumberFound).Should().BeTrue();
+			_row.Squares[0].Cell.Get().Should().Be(1);
+			_row.Squares[4].Cell.Get().Should().Be(5);
+			_row.Squares[8].Cell.Get().Should().Be(9);
 		}
 	}
 }

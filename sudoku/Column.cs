@@ -33,7 +33,7 @@
             {
                 var missingNumber = _resolver.GetAllNumbers().Except<int>(_resolver.GetFoundNumbers(_squares)).First();
 
-                _squares.Single(s => s.Cell.IsEmpty).Cell.Add(missingNumber);
+                _squares.Single(s => !s.Cell.IsNumberFound).Cell.Set(missingNumber);
             }
         }
     }

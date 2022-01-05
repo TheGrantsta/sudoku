@@ -36,7 +36,7 @@
 				var column = int.Parse(value.Substring(1, 1)) - 1;
 				var number = int.Parse(value.Substring(2, 1));
 
-				_rows[row].Squares[column].Cell.Add(number);
+				_rows[row].Squares[column].Cell.Set(number);
 			}
 		}
 

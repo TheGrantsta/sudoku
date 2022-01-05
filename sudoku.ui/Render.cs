@@ -23,7 +23,7 @@
 
 		private static void SquareOutput(Square square)
         {
-			var cellString = square.Cell.IsFound ? $"|{square.Cell.Numbers.First()}|" : "|_|";
+			var cellString = square.Cell.IsNumberFound ? $"|{square.Cell.Get()}|" : "|_|";
 
 			Console.Write(cellString);
         }
