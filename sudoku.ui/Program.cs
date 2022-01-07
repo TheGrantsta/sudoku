@@ -9,6 +9,7 @@ var grid = new Grid(new Resolver());
 
 grid.Initialise();
 
+//Mild
 grid.Set(new[] { "165" });
 grid.Set(new[] { "254", "289", "297" });
 grid.Set(new[] { "357", "372", "384" });
@@ -19,10 +20,18 @@ grid.Set(new[] { "735", "762", "787", "794" });
 grid.Set(new[] { "828", "834", "846", "879", "881" });
 grid.Set(new[] { "923", "964", "976" });
 
-//Manual testing co-ordinates
-//grid.Set(new[] { "183", "586", "988" });
-//grid.Set(new[] { "857", "862", "895" });
-//grid.Set(new[] { "992" });
+//Super fiendish
+//grid.Set(new[] { "196" });
+//grid.Set(new[] { "238", "269", "274", "281", "292" });
+//grid.Set(new[] { "322", "333", "341" });
+
+//grid.Set(new[] { "434", "476", "497" });
+//grid.Set(new[] { "589" });
+//grid.Set(new[] { "626", "662", "675" });
+
+//grid.Set(new[] { "729", "742", "761" });
+//grid.Set(new[] { "823", "855", "898" });
+//grid.Set(new[] { "914", "928", "943", "982", "995" });
 
 var render = new Render(grid);
 
