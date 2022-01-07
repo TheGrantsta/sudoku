@@ -14,7 +14,7 @@ public class Cell
 
     public Cell()
     {
-        Reset();
+        _numbers = new List<int>();
     }
 
     public int Get()
@@ -49,7 +49,7 @@ public class Cell
 
     public void Reset()
     {
-        _numbers = new List<int>();
+        _numbers.Clear();
     }
 
     private static bool IsOutOfRange(int i)

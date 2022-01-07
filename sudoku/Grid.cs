@@ -42,6 +42,8 @@
 
 		public void Resolve()
 		{
+			_boxes.ForEach(b => b.Find(_columns));
+
 			_rows.ForEach(r => r.Resolve());
 
 			_columns.ForEach(c => c.Resolve());
