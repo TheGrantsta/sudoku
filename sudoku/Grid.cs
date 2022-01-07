@@ -36,20 +36,26 @@
 				var column = int.Parse(value.Substring(1, 1)) - 1;
 				var number = int.Parse(value.Substring(2, 1));
 
-				_rows[row].Squares[column].Cell.Add(number);
+				_rows[row].Squares[column].Cell.Set(number);
 			}
 		}
 
 		public void Resolve()
-		{
-			_rows.ForEach(r => r.Resolve());
+        {
+			do
+			{
+				_boxes.ForEach(b => b.Find(_columns));
 
-			_columns.ForEach(c => c.Resolve());
+				_rows.ForEach(r => r.Resolve());
 
-			_boxes.ForEach(b => b.Resolve());
-		}
+				_columns.ForEach(c => c.Resolve());
 
-		private void InitialiseRows()
+				_boxes.ForEach(b => b.Resolve());
+
+			} while (IsSquareToBeFound());
+        }
+
+        private void InitialiseRows()
 		{
 			for (int r = 1; r < 10; r++)
 			{
@@ -86,6 +92,11 @@
 					_boxes.Add(box);
 				}
 			}
+		}
+
+		private bool IsSquareToBeFound()
+		{
+			return !_rows.All(r => r.Squares.All(s => s.Cell.IsNumberFound));
 		}
 	}
 }
