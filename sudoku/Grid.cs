@@ -41,20 +41,21 @@
 		}
 
 		public void Resolve()
-		{
+        {
 			do
 			{
+				_boxes.ForEach(b => b.Find(_columns));
+
 				_rows.ForEach(r => r.Resolve());
 
 				_columns.ForEach(c => c.Resolve());
 
-				_boxes.ForEach(b => b.Find(_columns));
-
 				_boxes.ForEach(b => b.Resolve());
-			} while (_rows.Any(r => r.Squares.Any(s => !s.Cell.IsNumberFound)));
-		}
 
-		private void InitialiseRows()
+			} while (IsSquareToBeFound());
+        }
+
+        private void InitialiseRows()
 		{
 			for (int r = 1; r < 10; r++)
 			{
@@ -91,6 +92,11 @@
 					_boxes.Add(box);
 				}
 			}
+		}
+
+		private bool IsSquareToBeFound()
+		{
+			return !_rows.All(r => r.Squares.All(s => s.Cell.IsNumberFound));
 		}
 	}
 }
