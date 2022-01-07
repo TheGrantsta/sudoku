@@ -42,13 +42,16 @@
 
 		public void Resolve()
 		{
-			_boxes.ForEach(b => b.Find(_columns));
+			do
+			{
+				_rows.ForEach(r => r.Resolve());
 
-			_rows.ForEach(r => r.Resolve());
+				_columns.ForEach(c => c.Resolve());
 
-			_columns.ForEach(c => c.Resolve());
+				_boxes.ForEach(b => b.Find(_columns));
 
-			_boxes.ForEach(b => b.Resolve());
+				_boxes.ForEach(b => b.Resolve());
+			} while (_rows.Any(r => r.Squares.Any(s => !s.Cell.IsNumberFound)));
 		}
 
 		private void InitialiseRows()

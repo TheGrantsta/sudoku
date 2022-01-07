@@ -75,6 +75,8 @@
 
                 square.Cell.Set(numberInBox.Number);
             }
+
+            _squares.ForEach(s => s.Cell.Reset());
         }
 
         private List<NumberInBox> GetNumbersInBox()
