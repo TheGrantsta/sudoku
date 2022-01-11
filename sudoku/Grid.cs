@@ -52,7 +52,7 @@
 
 				_boxes.ForEach(b => b.Resolve());
 
-				if (_boxes.Any(b => b.Squares.Sum(n => n.Cell.Get()) != 45 && b.Squares.All(c=>c.Cell.IsNumberFound)))
+				if (_boxes.Any(b => b.Squares.Sum(n => n.Cell.Get()) != 45 && b.Squares.All(c=>c.Cell.IsFound)))
 				{
 					break;
 				}
@@ -110,7 +110,7 @@
 				return false;
             }
 
-			return !_rows.All(r => r.Squares.All(s => s.Cell.IsNumberFound));
+			return !_rows.All(r => r.Squares.All(s => s.Cell.IsFound));
 		}
 	}
 }

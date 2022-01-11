@@ -30,7 +30,7 @@
             {
                 var missingNumber = _resolver.GetAllNumbers().Except<int>(_resolver.GetFoundNumbers(_squares)).First();
 
-                var square = _squares.Single(s => !s.Cell.IsNumberFound);
+                var square = _squares.Single(s => s.Cell.IsMissing);
 
                 square.Cell.Set(missingNumber);
 

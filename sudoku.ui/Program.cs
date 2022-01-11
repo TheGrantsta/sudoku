@@ -31,7 +31,7 @@ grid.Set(new[] { "719", "723", "765", "774" });
 grid.Set(new[] { "814", "832" });
 grid.Set(new[] { "928", "937", "954", "969", "982" });
 
-grid.Set(new[] { "742" });
+//grid.Set(new[] { "742" });
 
 //Super fiendish
 //grid.Set(new[] { "196" });

@@ -10,7 +10,9 @@ public class Cell
 
     public bool IsEmpty => !_numbers.Any();
 
-    public bool IsNumberFound => _number > 0;
+    public bool IsFound => _number > 0;
+
+    public bool IsMissing => _number == 0;
 
     public Cell()
     {
@@ -69,7 +71,7 @@ public class Cell
 
     private bool IsNotFound()
     {
-        return !IsNumberFound;
+        return !IsFound;
     }
 }
 

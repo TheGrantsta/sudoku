@@ -35,7 +35,7 @@
         {
             var boxNumbers = _resolver.GetFoundNumbers(_squares);
 
-            foreach (var square in _squares.Where(c => c.Cell.IsEmpty && !c.Cell.IsNumberFound))
+            foreach (var square in _squares.Where(c => c.Cell.IsEmpty && c.Cell.IsMissing))
             {
                 var rowNumbers = _resolver
                     .GetFoundNumbers(_rows[square.Coordinate.Row - 1].Squares
@@ -60,12 +60,16 @@
 
         public void Resolve()
         {
-            if (_resolver.IsOneSquareEmpty(_squares))
-            {
-                var missingNumber = _resolver.GetAllNumbers().Except<int>(_resolver.GetFoundNumbers(_squares)).First();
+            //if (_resolver.IsOneSquareEmpty(_squares))
+            //{
+            //    var missingNumber = _resolver.GetAllNumbers().Except<int>(_resolver.GetFoundNumbers(_squares)).First();
 
-                _squares.Single(s => !s.Cell.IsNumberFound).Cell.Set(missingNumber);
-            }
+            //    var square = _squares.Single(s => !s.Cell.IsNumberFound);//.Cell.Set(missingNumber);
+
+            //    square.Cell.Set(missingNumber);
+
+            //    Console.Write($"(B) {square.Coordinate.DisplayName} - {missingNumber}; ");
+            //}
 
             var numbersInBox = GetNumbersInBox();
 
@@ -87,7 +91,7 @@
         {
             var numbersInBox = new List<NumberInBox>();
 
-            foreach (var square in _squares.Where(s => !s.Cell.IsNumberFound))
+            foreach (var square in _squares.Where(s => s.Cell.IsMissing))
             {
                 foreach (var number in square.Cell.Numbers)
                 {

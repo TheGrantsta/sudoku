@@ -18,13 +18,13 @@
 
         public bool IsOneSquareEmpty(List<Square> squares)
         {
-            return squares.Count(s => !s.Cell.IsNumberFound) == 1;
+            return squares.Count(s => s.Cell.IsMissing) == 1;
         }
 
         public List<int> GetFoundNumbers(List<Square> squares)
         {
             return squares
-                .Where(s => s.Cell.IsNumberFound)
+                .Where(s => s.Cell.IsFound)
                 .Select(s => s.Cell.Get())
                 .ToList();
         }
