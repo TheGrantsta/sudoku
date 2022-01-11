@@ -11,6 +11,8 @@
 
 		public void Display()
         {
+			Console.WriteLine("");
+
             ((List<Row>)_grid.Rows).ForEach(s => RowOuput(s));
         }
 
