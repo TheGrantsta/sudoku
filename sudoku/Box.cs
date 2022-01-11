@@ -73,7 +73,11 @@
             {
                 var square = _squares.Where(s => s.Coordinate.DisplayName == numberInBox.Coordinate).First();
 
+                //square.Cell.Set(numberInBox.Number);
+
                 square.Cell.Set(numberInBox.Number);
+
+                Console.Write($"(D) {square.Coordinate.DisplayName} - {numberInBox.Number}; ");
             }
 
             _squares.ForEach(s => s.Cell.Reset());

@@ -44,13 +44,18 @@
         {
 			do
 			{
-				_boxes.ForEach(b => b.Find(_columns));
-
 				_rows.ForEach(r => r.Resolve());
 
 				_columns.ForEach(c => c.Resolve());
 
+				_boxes.ForEach(b => b.Find(_columns));
+
 				_boxes.ForEach(b => b.Resolve());
+
+				if (_boxes.Any(b => b.Squares.Sum(n => n.Cell.Get()) != 45 && b.Squares.All(c=>c.Cell.IsNumberFound)))
+				{
+					break;
+				}
 
 			} while (IsSquareToBeFound());
         }
@@ -94,8 +99,17 @@
 			}
 		}
 
+		private int loops = 0;
+
 		private bool IsSquareToBeFound()
 		{
+			loops++;
+
+			if(loops > 500)
+            {
+				return false;
+            }
+
 			return !_rows.All(r => r.Squares.All(s => s.Cell.IsNumberFound));
 		}
 	}
