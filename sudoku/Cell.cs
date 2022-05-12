@@ -29,7 +29,7 @@ public class Cell
             throw new ArgumentOutOfRangeException($"Set parameter {i} out of range");
         }
 
-        Reset();
+        Clear();
 
         _number = i;
     }
@@ -47,7 +47,7 @@ public class Cell
         }
     }
 
-    public void Reset()
+    public void Clear()
     {
         _numbers.Clear();
     }

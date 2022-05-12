@@ -80,7 +80,7 @@ public class CellTests
         cell.Add(1);
         cell.Add(2);
 
-        cell.Reset();
+        cell.Clear();
 
         cell.IsEmpty.Should().BeTrue();
         cell.IsNumberFound.Should().BeFalse();

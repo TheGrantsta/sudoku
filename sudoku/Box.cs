@@ -80,7 +80,7 @@
                 Console.Write($"(D) {square.Coordinate.DisplayName} - {numberInBox.Number}; ");
             }
 
-            _squares.ForEach(s => s.Cell.Reset());
+            _squares.ForEach(s => s.Cell.Clear());
         }
 
         private List<NumberInBox> GetNumbersInBox()
