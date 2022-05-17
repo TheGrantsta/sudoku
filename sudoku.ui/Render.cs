@@ -12,6 +12,7 @@
 		public void Display()
         {
 			Console.WriteLine("");
+            Console.Write("*******************************");
 
             ((List<Row>)_grid.Rows).ForEach(s => RowOuput(s));
 
@@ -24,17 +25,33 @@
 
 		private static void RowOuput(Row r)
         {
-			((List<Square>)r.Squares).ForEach(s => SquareOutput(s));
-			
-			Console.WriteLine("");
+            Console.WriteLine("");
+
+            ((List<Square>)r.Squares).ForEach(s => SquareOutput(s));
+
+            if (r.Squares.First().Coordinate.Row % 3 == 0)
+            {
+                Console.WriteLine("");
+                Console.Write("*******************************");
+            }
         }
 
 		private static void SquareOutput(Square square)
         {
+            if (square.Coordinate.Column == 1)
+            {
+				Console.Write("*");
+            }
+
 			var cellString = square.Cell.IsNumberFound ? $"|{square.Cell.Get()}|" : "|_|";
 
 			Console.Write(cellString);
+
+            if (square.Coordinate.Column % 3 == 0)
+            {
+                Console.Write("*");
+            }
         }
-	}
+    }
 }
 
