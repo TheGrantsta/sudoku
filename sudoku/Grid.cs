@@ -48,8 +48,6 @@
 
 				_columns.ForEach(c => c.Resolve());
 
-				//_boxes.ForEach(b => b.Find(_columns));
-
 				_boxes.ForEach(b => b.Resolve(_columns));
 
 			} while (IsSquareToBeFound());
