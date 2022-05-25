@@ -48,14 +48,9 @@
 
 				_columns.ForEach(c => c.Resolve());
 
-				_boxes.ForEach(b => b.Find(_columns));
+				//_boxes.ForEach(b => b.Find(_columns));
 
-				_boxes.ForEach(b => b.Resolve());
-
-				if (_boxes.Any(b => b.Squares.Sum(n => n.Cell.Get()) != 45 && b.Squares.All(c=>c.Cell.IsNumberFound)))
-				{
-					break;
-				}
+				_boxes.ForEach(b => b.Resolve(_columns));
 
 			} while (IsSquareToBeFound());
         }

@@ -72,7 +72,18 @@ namespace sudoku.unittests
 
 			box.Initialise(_rows, new Coordinate(1, 1));
 
-			box.Resolve();
+			var columns = new List<Column>();
+
+			for (int c = 1; c < 4; c++)
+			{
+				var column = new Column(_resolver);
+
+				column.Initialise(_rows, c);
+
+				columns.Add(column);
+			}
+
+			box.Resolve(columns);
 
 			box.Squares
 				.All(c => c.Cell.IsNumberFound)
@@ -84,6 +95,18 @@ namespace sudoku.unittests
 		[Fact]
 		public void ShouldFindAllOptionsForEachSquareInBox()
         {
+			A.CallTo(() => _resolver.IsOneSquareEmpty(A<List<Square>>.Ignored))
+				.Returns(false);
+
+			_rows[0].Squares[0].Cell.Set(1);
+			_rows[0].Squares[1].Cell.Set(2);
+			_rows[0].Squares[2].Cell.Set(3);
+			_rows[1].Squares[1].Cell.Set(5);
+			_rows[1].Squares[2].Cell.Set(6);
+			_rows[2].Squares[0].Cell.Set(7);
+			_rows[2].Squares[1].Cell.Set(8);
+			_rows[2].Squares[2].Cell.Set(9);
+
 			var box = new Box(_resolver);
 
 			box.Initialise(_rows, new Coordinate(1, 1));
@@ -99,9 +122,12 @@ namespace sudoku.unittests
 				columns.Add(column);
 			}
 
-			box.Find(columns);
+			box.Resolve(columns);
 
-			box.Squares.All(s => !s.Cell.IsEmpty || s.Cell.IsNumberFound).Should().BeTrue();
+			box.Squares
+				.All(s => !s.Cell.IsEmpty || s.Cell.IsNumberFound)
+				.Should()
+				.BeTrue();
 		}
 
 		[Fact]
@@ -132,7 +158,18 @@ namespace sudoku.unittests
 
             box.Initialise(_rows, new Coordinate(1, 1));
 
-			box.Resolve();
+			var columns = new List<Column>();
+
+			for (int c = 1; c < 4; c++)
+			{
+				var column = new Column(_resolver);
+
+				column.Initialise(_rows, c);
+
+				columns.Add(column);
+			}
+
+			box.Resolve(columns);
 
 			var square = box.Squares.Where(s => s.Coordinate.DisplayName == "A3").First();
 

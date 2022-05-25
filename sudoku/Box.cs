@@ -31,7 +31,36 @@
             }
         }
 
-        public void Find(List<Column> columns)
+        public void Resolve(List<Column> columns)
+        {
+            Find(columns);
+
+            if (_resolver.IsOneSquareEmpty(_squares))
+            {
+                var missingNumber = _resolver.GetAllNumbers().Except<int>(_resolver.GetFoundNumbers(_squares)).First();
+
+                var square = _squares.Single(s => !s.Cell.IsNumberFound);
+
+                square.Cell.Set(missingNumber);
+
+                Console.Write($"(B) {square.Coordinate.DisplayName} - {missingNumber}; ");
+            }
+
+            var numbersInBox = GetNumbersInBox();
+
+            if (IsUniqueNumberInBox(numbersInBox, out NumberInBox numberInBox))
+            {
+                var square = _squares.Where(s => s.Coordinate.DisplayName == numberInBox.Coordinate).First();
+
+                square.Cell.Set(numberInBox.Number);
+
+                Console.Write($"(D) {square.Coordinate.DisplayName} - {numberInBox.Number}; ");
+            }
+
+            _squares.ForEach(s => s.Cell.Clear());
+        }
+
+        private void Find(List<Column> columns)
         {
             var boxNumbers = _resolver.GetFoundNumbers(_squares);
 
@@ -56,31 +85,6 @@
                     }
                 }
             }
-        }
-
-        public void Resolve()
-        {
-            if (_resolver.IsOneSquareEmpty(_squares))
-            {
-                var missingNumber = _resolver.GetAllNumbers().Except<int>(_resolver.GetFoundNumbers(_squares)).First();
-
-                _squares.Single(s => !s.Cell.IsNumberFound).Cell.Set(missingNumber);
-            }
-
-            var numbersInBox = GetNumbersInBox();
-
-            if (IsUniqueNumberInBox(numbersInBox, out NumberInBox numberInBox))
-            {
-                var square = _squares.Where(s => s.Coordinate.DisplayName == numberInBox.Coordinate).First();
-
-                //square.Cell.Set(numberInBox.Number);
-
-                square.Cell.Set(numberInBox.Number);
-
-                Console.Write($"(D) {square.Coordinate.DisplayName} - {numberInBox.Number}; ");
-            }
-
-            _squares.ForEach(s => s.Cell.Clear());
         }
 
         private List<NumberInBox> GetNumbersInBox()

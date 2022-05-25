@@ -33,12 +33,14 @@
             {
                 var missingNumber = _resolver.GetAllNumbers().Except<int>(_resolver.GetFoundNumbers(_squares)).First();
 
-                var square = _squares.Single(s => !s.Cell.IsNumberFound);//.Cell.Set(missingNumber);
+                var square = _squares.Single(s => !s.Cell.IsNumberFound);
 
                 square.Cell.Set(missingNumber);
 
                 Console.Write($"(C) {square.Coordinate.DisplayName} - {missingNumber}; ");
             }
+
+            _squares.ForEach(s => s.Cell.Clear());
         }
     }
 }
