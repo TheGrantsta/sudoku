@@ -44,7 +44,11 @@
         {
 			do
 			{
-				_rows.ForEach(r => r.Resolve());
+				_rows.ForEach(r =>
+				{
+					r.Resolve();
+                    new Intersect(_resolver, r, _columns).Resolve();
+				});
 
 				_columns.ForEach(c => c.Resolve());
 

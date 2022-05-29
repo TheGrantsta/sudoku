@@ -4,8 +4,10 @@
 	{
         private readonly IResolver _resolver;
 		private readonly List<Square> _squares;
+        private int _columnNumber;
 
 		public IReadOnlyList<Square> Squares => _squares;
+        public int ColumnNumber => _columnNumber;
 
         public Column(IResolver resolver)
         {
@@ -15,6 +17,8 @@
 
 		public void Initialise(List<Row> rows, int i)
 		{
+            _columnNumber = i;
+
             foreach(var row in rows)
             {
 				foreach(var square in row.Squares)
