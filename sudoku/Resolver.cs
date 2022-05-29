@@ -7,6 +7,8 @@
 		bool IsOneSquareEmpty(List<Square> squares);
 
 		List<int> GetFoundNumbers(List<Square> squares);
+
+        List<int> GetMissingNumbers(List<Square> squares);
 	}
 
     public class Resolver : IResolver
@@ -27,6 +29,11 @@
                 .Where(s => s.Cell.IsNumberFound)
                 .Select(s => s.Cell.Get())
                 .ToList();
+        }
+
+        public List<int> GetMissingNumbers(List<Square> squares)
+        {
+            return GetAllNumbers().Except<int>(GetFoundNumbers(squares)).ToList();
         }
     }
 }
