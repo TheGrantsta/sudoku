@@ -49,7 +49,7 @@ var render = new Render(grid);
 render.Display();
 
 Console.WriteLine("");
-Console.WriteLine("****************");
+Console.WriteLine("*******************************");
 Console.WriteLine("");
 
 Console.WriteLine("Hit ENTER key to see answer");
@@ -62,4 +62,4 @@ grid.Resolve();
 render.Display();
 
 Console.WriteLine("");
-Console.WriteLine("****************");
+Console.WriteLine("");
