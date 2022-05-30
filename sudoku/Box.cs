@@ -64,7 +64,7 @@
         {
             var boxNumbers = _resolver.GetFoundNumbers(_squares);
 
-            foreach (var square in _squares.Where(c => c.Cell.IsEmpty && !c.Cell.IsNumberFound))
+            foreach (var square in _squares.Where(c => !c.Cell.IsNumberFound))
             {
                 var rowNumbers = _resolver
                     .GetFoundNumbers(_rows[square.Coordinate.Row - 1].Squares

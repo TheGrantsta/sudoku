@@ -47,7 +47,7 @@ namespace sudoku.unittests
 
 			box.Initialise(_rows, new Coordinate(_row, column));
 
-			box.Squares.All(s => s.Cell.IsEmpty).Should().BeTrue();
+			box.Squares.All(s => s.Cell.Numbers.Count() == 0).Should().BeTrue();
 			box.Squares.Count.Should().Be(9);
 			box.Squares.First().Coordinate.DisplayName.Should().Be(topLeft);
 			box.Squares.Last().Coordinate.DisplayName.Should().Be(bottomRight);
@@ -125,7 +125,7 @@ namespace sudoku.unittests
 			box.Resolve(columns);
 
 			box.Squares
-				.All(s => !s.Cell.IsEmpty || s.Cell.IsNumberFound)
+				.All(s => s.Cell.IsNumberFound)
 				.Should()
 				.BeTrue();
 		}

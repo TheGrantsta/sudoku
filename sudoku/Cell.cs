@@ -2,13 +2,11 @@
 
 public class Cell
 {
-    private List<int> _numbers;
+    private readonly List<int> _numbers;
 
     private int _number;
 
     public IReadOnlyList<int> Numbers => _numbers;
-
-    public bool IsEmpty => !_numbers.Any();
 
     public bool IsNumberFound => _number > 0;
 

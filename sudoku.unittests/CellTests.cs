@@ -55,7 +55,7 @@ public class CellTests
         cell.Set(1);
 
         cell.IsNumberFound.Should().BeTrue();
-        cell.IsEmpty.Should().BeTrue();
+        cell.Numbers.Should().BeEmpty();
     }
 
     [Fact]
@@ -69,7 +69,7 @@ public class CellTests
         cell.Add(3);
 
         cell.IsNumberFound.Should().BeTrue();
-        cell.IsEmpty.Should().BeTrue();
+        cell.Numbers.Should().BeEmpty();
     }
 
     [Fact]
@@ -82,7 +82,7 @@ public class CellTests
 
         cell.Clear();
 
-        cell.IsEmpty.Should().BeTrue();
+        cell.Numbers.Should().BeEmpty();
         cell.IsNumberFound.Should().BeFalse();
     }
 
@@ -101,7 +101,7 @@ public class CellTests
     {
         var cell = new Cell();
 
-        cell.IsEmpty.Should().BeTrue();
+        cell.Numbers.Should().BeEmpty();
     }
 
     [Fact]
@@ -111,7 +111,7 @@ public class CellTests
 
         cell.Add(1);
 
-        cell.IsEmpty.Should().BeFalse();
+        cell.Numbers.Should().NotBeEmpty();
     }
 
     [Fact]

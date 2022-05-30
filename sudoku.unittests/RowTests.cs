@@ -36,7 +36,7 @@ namespace sudoku.unittests
 			_row.Initialise(rowNumber);
 
 			_row.Squares.Should().NotBeNullOrEmpty();
-			_row.Squares.All(s => s.Cell.IsEmpty).Should().BeTrue();
+			_row.Squares.All(s => s.Cell.Numbers.Count() == 0).Should().BeTrue();
 			_row.Squares.All(s => s.Coordinate.DisplayName.StartsWith(columnLetter)).Should().BeTrue();
 		}
 
