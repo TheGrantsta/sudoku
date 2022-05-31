@@ -32,12 +32,16 @@
 
 		private static void SquareOutput(Square square)
         {
+<<<<<<< HEAD
             if (square.Coordinate.Column == 1)
             {
 				Console.Write("*");
             }
 
 			var cellString = square.Cell.IsNumberFound ? $"|{square.Cell.Get()}|" : "|_|";
+=======
+			var cellString = square.Cell.IsFound ? $"|{square.Cell.Get()}|" : "|_|";
+>>>>>>> a0d929a933dc375f3943b73371102eda2ce3ec5f
 
 			Console.Write(cellString);
 
