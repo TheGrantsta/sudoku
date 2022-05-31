@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using FakeItEasy;
 using FluentAssertions;
@@ -7,7 +6,7 @@ using Xunit;
 
 namespace sudoku.unittests
 {
-	public class BoxTests
+    public class BoxTests
 	{
 		private readonly IResolver _resolver;
 		private readonly List<Row> _rows;

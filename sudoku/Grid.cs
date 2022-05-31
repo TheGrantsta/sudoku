@@ -40,7 +40,7 @@
 			}
 		}
 
-		public void Resolve()
+		public bool Resolve()
         {
 			do
 			{
@@ -55,7 +55,9 @@
 				_boxes.ForEach(b => b.Resolve(_columns));
 
 			} while (IsSquareToBeFound());
-        }
+
+			return _rows.All(r => r.Squares.All(s => s.Cell.IsNumberFound));
+		}
 
         private void InitialiseRows()
 		{

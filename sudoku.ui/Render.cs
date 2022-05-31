@@ -15,12 +15,6 @@
             Console.Write("*******************************");
 
             ((List<Row>)_grid.Rows).ForEach(s => RowOuput(s));
-
-            if (_grid.Rows.Any(r => !r.Squares.All(c => c.Cell.IsNumberFound)))
-            {
-                Console.WriteLine("");
-                Console.WriteLine("Sudoku puzzle NOT resolved!");
-            }
         }
 
 		private static void RowOuput(Row r)
