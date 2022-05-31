@@ -85,9 +85,10 @@ namespace sudoku.unittests
 			box.Resolve(columns);
 
 			box.Squares
-				.All(c => c.Cell.IsFound)
+				.All(c => c.Cell.IsNumberFound)
 				.Should()
 				.BeTrue();
+
 			box.Squares[3].Cell.Get().Should().Be(4);
 		}
 
@@ -123,14 +124,10 @@ namespace sudoku.unittests
 
 			box.Resolve(columns);
 
-<<<<<<< HEAD
 			box.Squares
 				.All(s => s.Cell.IsNumberFound)
 				.Should()
 				.BeTrue();
-=======
-			box.Squares.All(s => !s.Cell.IsEmpty || s.Cell.IsFound).Should().BeTrue();
->>>>>>> a0d929a933dc375f3943b73371102eda2ce3ec5f
 		}
 
 		[Fact]
@@ -176,7 +173,7 @@ namespace sudoku.unittests
 
 			var square = box.Squares.Where(s => s.Coordinate.DisplayName == "A3").First();
 
-			square.Cell.IsFound.Should().BeTrue();
+			square.Cell.IsNumberFound.Should().BeTrue();
 			square.Cell.Get().Should().Be(6);
 		}
 	}

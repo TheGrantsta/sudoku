@@ -8,15 +8,9 @@ public class Cell
 
     public IReadOnlyList<int> Numbers => _numbers;
 
-<<<<<<< HEAD
     public bool IsNumberFound => _number > 0;
-=======
+
     public bool IsEmpty => !_numbers.Any();
-
-    public bool IsFound => _number > 0;
-
-    public bool IsMissing => _number == 0;
->>>>>>> a0d929a933dc375f3943b73371102eda2ce3ec5f
 
     public Cell()
     {
@@ -75,7 +69,7 @@ public class Cell
 
     private bool IsNotFound()
     {
-        return !IsFound;
+        return !IsNumberFound;
     }
 }
 

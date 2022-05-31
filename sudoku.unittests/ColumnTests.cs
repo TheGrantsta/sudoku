@@ -63,7 +63,7 @@ namespace sudoku.unittests
 			column.Resolve();
 
 			column.Squares
-				.All(c => c.Cell.IsFound)
+				.All(c => c.Cell.IsNumberFound)
 				.Should()
 				.BeTrue();
 			column.Squares.First().Cell.Get().Should().Be(1);

@@ -54,7 +54,7 @@ namespace sudoku.unittests
 
 			_row.Resolve();
 
-			_row.Squares.All(s => s.Cell.IsFound).Should().BeTrue();
+			_row.Squares.All(s => s.Cell.IsNumberFound).Should().BeTrue();
 			_row.Squares.Last().Cell.Get().Should().Be(9);
 		}
 
@@ -75,7 +75,7 @@ namespace sudoku.unittests
 
 			_row.Resolve();
 
-			_row.Squares.All(s => s.Cell.IsFound).Should().BeTrue();
+			_row.Squares.All(s => s.Cell.IsNumberFound).Should().BeTrue();
 			_row.Squares[0].Cell.Get().Should().Be(1);
 			_row.Squares[4].Cell.Get().Should().Be(5);
 			_row.Squares[8].Cell.Get().Should().Be(9);

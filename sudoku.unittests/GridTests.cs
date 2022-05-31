@@ -27,11 +27,11 @@ namespace sudoku.unittests
 
 			grid.Set(new[] { "165" });
 
-			grid.Rows[0].Squares[5].Cell.IsFound.Should().BeTrue();
+			grid.Rows[0].Squares[5].Cell.IsNumberFound.Should().BeTrue();
 			grid.Rows[0].Squares[5].Cell.Get().Should().Be(5);
 			grid.Rows[0].Squares[5].Coordinate.Should().BeEquivalentTo<Coordinate>(new Coordinate(1, 6));
 
-			grid.Columns[5].Squares[0].Cell.IsFound.Should().BeTrue();
+			grid.Columns[5].Squares[0].Cell.IsNumberFound.Should().BeTrue();
 			grid.Columns[5].Squares[0].Cell.Get().Should().Be(5);
 		}
 	}
