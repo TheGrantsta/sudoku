@@ -56,7 +56,8 @@ public class CellTests
         cell.Set(1);
 
         cell.IsNumberFound.Should().BeTrue();
-        cell.Numbers.Should().BeEmpty();
+        cell.Numbers.Count().Should().Be(1);
+        cell.Numbers.First().Number.Should().Be(1);
     }
 
     [Fact]
@@ -70,21 +71,8 @@ public class CellTests
         cell.Add(3);
 
         cell.IsNumberFound.Should().BeTrue();
-        cell.Numbers.Should().BeEmpty();
-    }
-
-    [Fact]
-    public void ShouldResetListOfNumbers()
-    {
-        var cell = new Cell();
-
-        cell.Add(1);
-        cell.Add(2);
-
-        cell.Clear();
-
-        cell.Numbers.Should().BeEmpty();
-        cell.IsNumberFound.Should().BeFalse();
+        cell.Numbers.Count().Should().Be(1);
+        cell.Numbers.First().Number.Should().Be(1);
     }
 
     [Fact]

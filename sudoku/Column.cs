@@ -43,8 +43,6 @@
 
                 Console.Write($"(C) {square.Coordinate.DisplayName} - {missingNumber}; ");
             }
-
-            _squares.ForEach(s => s.Cell.Clear());
         }
     }
 }

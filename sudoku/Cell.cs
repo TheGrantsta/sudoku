@@ -4,11 +4,19 @@ public class Cell
 {
     private readonly List<CellNumber> _numbers;
 
-    private CellNumber _cellNumber;
-
     public IReadOnlyList<CellNumber> Numbers => _numbers;
 
-    public bool IsNumberFound => _cellNumber.Number > 0 && !_cellNumber.IsGuess;
+    public bool IsNumberFound => IsNumberFoundInList();
+
+    private bool IsNumberFoundInList()
+    {
+        if (_numbers.Any())
+        {
+            return _numbers.First().Number > 0 && !_numbers.First().IsGuess;
+        }
+
+        return false;
+    }
 
     public Cell()
     {
@@ -17,7 +25,7 @@ public class Cell
 
     public int Get()
     {
-        return _cellNumber.Number;
+        return _numbers.Single().Number;
     }
 
     public void Set(int i)
@@ -29,10 +37,10 @@ public class Cell
 
         Clear();
 
-        _cellNumber = new CellNumber { Number = i };
+        Add(i, false);
     }
 
-    public void Add(int i)
+    public void Add(int i, bool isGuess = true)
     {
         if (IsOutOfRange(i))
         {
@@ -41,11 +49,11 @@ public class Cell
 
         if (IsUniqueAndNumberIsNotFound(i))
         {
-            _numbers.Add(new CellNumber { Number = i, IsGuess = true });
+            _numbers.Add(new CellNumber { Number = i, IsGuess = isGuess });
         }
     }
 
-    public void Clear()
+    private void Clear()
     {
         _numbers.Clear();
     }
