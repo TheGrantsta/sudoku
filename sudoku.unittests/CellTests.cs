@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentAssertions;
 using Xunit;
 
@@ -144,7 +145,8 @@ public class CellTests
         cell.Add(1);
 
         cell.Numbers.Count.Should().Be(2);
-        cell.Numbers[0].Should().Be(1);
-        cell.Numbers[1].Should().Be(2);
+        cell.Numbers.All(c => c.IsGuess).Should().BeTrue();
+        cell.Numbers[0].Number.Should().Be(1);
+        cell.Numbers[1].Number.Should().Be(2);
     }
 }

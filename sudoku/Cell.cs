@@ -2,11 +2,11 @@
 
 public class Cell
 {
-    private readonly List<int> _numbers;
+    private readonly List<CellNumber> _numbers;
 
     private CellNumber _cellNumber;
 
-    public IReadOnlyList<int> Numbers => _numbers;
+    public IReadOnlyList<CellNumber> Numbers => _numbers;
 
     public bool IsNumberFound => _cellNumber.Number > 0 && !_cellNumber.IsGuess;
 
@@ -14,7 +14,7 @@ public class Cell
 
     public Cell()
     {
-        _numbers = new List<int>();
+        _numbers = new List<CellNumber>();
     }
 
     public int Get()
@@ -31,7 +31,7 @@ public class Cell
 
         Clear();
 
-        _cellNumber = new CellNumber { Number = i, IsGuess = false };
+        _cellNumber = new CellNumber { Number = i };
     }
 
     public void Add(int i)
@@ -43,7 +43,7 @@ public class Cell
 
         if (IsUniqueAndNumberIsNotFound(i))
         {
-            _numbers.Add(i);
+            _numbers.Add(new CellNumber { Number = i, IsGuess = true });
         }
     }
 
@@ -64,7 +64,7 @@ public class Cell
 
     private bool IsUnique(int i)
     {
-        return !_numbers.Any(n => n == i);
+        return !_numbers.Any(n => n.Number == i);
     }
 
     private bool IsNotFound()
@@ -73,7 +73,7 @@ public class Cell
     }
 }
 
-internal struct CellNumber
+public struct CellNumber
 {
     public int Number { get; set; }
 

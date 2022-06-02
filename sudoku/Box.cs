@@ -107,7 +107,7 @@
             {
                 foreach (var number in square.Cell.Numbers)
                 {
-                    numbersInBox.Add(new NumberInBox { Coordinate = square.Coordinate.DisplayName, Number = number });
+                    numbersInBox.Add(new NumberInBox { Coordinate = square.Coordinate.DisplayName, Number = number.Number });
                 }
             }
 
