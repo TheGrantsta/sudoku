@@ -53,6 +53,19 @@ public class Cell
         }
     }
 
+    public void Remove(int i)
+    {
+        if (IsOutOfRange(i))
+        {
+            throw new ArgumentOutOfRangeException($"Add parameter {i} out of range");
+        }
+
+        if (_numbers.Exists(c => c.Number == i))
+        {
+            _numbers.RemoveAll(c => c.Number == i);
+        }
+    }
+
     private void Clear()
     {
         _numbers.Clear();

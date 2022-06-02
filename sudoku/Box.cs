@@ -33,8 +33,6 @@
 
         public void Resolve(List<Column> columns)
         {
-            Find(columns);
-
             if (_resolver.IsOneSquareEmpty(_squares))
             {
                 var missingNumber = _resolver.GetAllNumbers().Except<int>(_resolver.GetFoundNumbers(_squares)).First();
@@ -45,16 +43,20 @@
 
                 Console.Write($"(B) {square.Coordinate.DisplayName} - {missingNumber}; ");
             }
-
-            var numbersInBox = GetNumbersInBox();
-
-            if (IsUniqueNumberInBox(numbersInBox, out NumberInBox numberInBox))
+            else
             {
-                var square = _squares.Where(s => s.Coordinate.DisplayName == numberInBox.Coordinate).First();
+                Find(columns);
 
-                square.Cell.Set(numberInBox.Number);
+                var numbersInBox = GetNumbersInBox();
 
-                Console.Write($"(D) {square.Coordinate.DisplayName} - {numberInBox.Number}; ");
+                if (IsUniqueNumberInBox(numbersInBox, out NumberInBox numberInBox))
+                {
+                    var square = _squares.Where(s => s.Coordinate.DisplayName == numberInBox.Coordinate).First();
+
+                    square.Cell.Set(numberInBox.Number);
+
+                    Console.Write($"(D) {square.Coordinate.DisplayName} - {numberInBox.Number}; ");
+                }
             }
         }
 
@@ -81,23 +83,14 @@
                     {
                         square.Cell.Add(number);
                     }
+                    else
+                    {
+                        square.Cell.Remove(number);
+                    }
                 }
             }
         }
 
-        public void Resolve()
-        {
-            var numbersInBox = GetNumbersInBox();
-
-            if (IsUniqueNumberInBox(numbersInBox, out NumberInBox numberInBox))
-            {
-                var square = _squares.Where(s => s.Coordinate.DisplayName == numberInBox.Coordinate).First();
-
-                square.Cell.Set(numberInBox.Number);
-
-                Console.Write($"(D) {square.Coordinate.DisplayName} - {numberInBox.Number}; ");
-            }
-        }
 
         private List<NumberInBox> GetNumbersInBox()
         {
@@ -118,7 +111,10 @@
         {
             uniqueNumberInBox = new NumberInBox();
 
-            var uniqueNumber = numbersInBox.GroupBy(n => n.Number).OrderBy(n => n.Count()).FirstOrDefault();
+            var uniqueNumber = numbersInBox
+                .GroupBy(n => n.Number)
+                .OrderBy(n => n.Count())
+                .FirstOrDefault();
 
             if (uniqueNumber == null || uniqueNumber.Count() != 1)
             {
