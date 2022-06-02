@@ -10,8 +10,6 @@ public class Cell
 
     public bool IsNumberFound => _cellNumber.Number > 0 && !_cellNumber.IsGuess;
 
-    public bool IsEmpty => !_numbers.Any();
-
     public Cell()
     {
         _numbers = new List<CellNumber>();
