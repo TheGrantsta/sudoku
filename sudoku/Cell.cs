@@ -4,11 +4,11 @@ public class Cell
 {
     private readonly List<int> _numbers;
 
-    private int _number;
+    private CellNumber _cellNumber;
 
     public IReadOnlyList<int> Numbers => _numbers;
 
-    public bool IsNumberFound => _number > 0;
+    public bool IsNumberFound => _cellNumber.Number > 0 && !_cellNumber.IsGuess;
 
     public bool IsEmpty => !_numbers.Any();
 
@@ -19,7 +19,7 @@ public class Cell
 
     public int Get()
     {
-        return _number;
+        return _cellNumber.Number;
     }
 
     public void Set(int i)
@@ -31,7 +31,7 @@ public class Cell
 
         Clear();
 
-        _number = i;
+        _cellNumber = new CellNumber { Number = i, IsGuess = false };
     }
 
     public void Add(int i)
@@ -71,5 +71,12 @@ public class Cell
     {
         return !IsNumberFound;
     }
+}
+
+internal struct CellNumber
+{
+    public int Number { get; set; }
+
+    public bool IsGuess { get; set; }
 }
 
