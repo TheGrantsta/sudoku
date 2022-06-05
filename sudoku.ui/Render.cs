@@ -12,7 +12,8 @@
 		public void Display()
         {
 			Console.WriteLine("");
-            Console.Write("*******************************");
+            Console.WriteLine("  *|A||B||C|*|D||E||F|*|G||H||I|*");
+            Console.Write("  *******************************");
 
             ((List<Row>)_grid.Rows).ForEach(s => RowOuput(s));
         }
@@ -21,12 +22,14 @@
         {
             Console.WriteLine("");
 
+            Console.Write($"{r.Squares.First().Coordinate.Row}:");
+
             ((List<Square>)r.Squares).ForEach(s => SquareOutput(s));
 
             if (r.Squares.First().Coordinate.Row % 3 == 0)
             {
                 Console.WriteLine("");
-                Console.Write("*******************************");
+                Console.Write("  *******************************");
             }
         }
 
