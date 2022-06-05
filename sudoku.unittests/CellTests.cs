@@ -25,6 +25,19 @@ public class CellTests
         cell.IsNumberFound.Should().BeTrue();
     }
 
+
+    [Fact]
+    public void ShouldThrowArgumentExceptionWhenSetIsCalledMoreThanOnce()
+    {
+        var cell = new Cell();
+
+        cell.Set(2);
+
+        Action add = () => cell.Set(1);
+
+        add.Should().Throw<InvalidOperationException>();
+    }
+
     [Fact]
     public void ShouldThrowArgumentExceptionWhenSetNumbersIsLessThanOne()
     {

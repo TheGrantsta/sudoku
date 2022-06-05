@@ -35,6 +35,11 @@ public class Cell
             throw new ArgumentOutOfRangeException($"Set parameter {i} out of range");
         }
 
+        if (IsNumberFound)
+        {
+            throw new InvalidOperationException($"Set parameter {i} called when number is found!");
+        }
+
         Clear();
 
         Add(i, false);
