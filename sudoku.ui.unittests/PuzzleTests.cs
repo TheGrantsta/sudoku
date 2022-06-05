@@ -17,7 +17,6 @@ public class PuzzleTests
     [Fact]
     public void ShouldCompleteMildPuzzle()
     {
-        //Mild
         _grid.Set(new[] { "165" });
         _grid.Set(new[] { "254", "289", "297" });
         _grid.Set(new[] { "357", "372", "384" });
@@ -40,7 +39,6 @@ public class PuzzleTests
     [Fact]
     public void ShouldCompleteDifficultPuzzle()
     {
-        //Difficult
         _grid.Set(new[] { "148" });
         _grid.Set(new[] { "216", "255", "273" });
         _grid.Set(new[] { "334", "375", "388" });
@@ -61,10 +59,9 @@ public class PuzzleTests
         isResolved.Should().BeTrue();
     }
 
-    [Fact(Skip = "Not working")]
+    [Fact]
     public void ShouldCompleteFiendishPuzzle()
     {
-        //Fiendish
         _grid.Set(new[] { "131", "157", "175", "194" });
         _grid.Set(new[] { "227", "251", "283" });
         _grid.Set(new[] { "313", "345", "399" });
