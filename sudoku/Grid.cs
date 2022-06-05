@@ -3,6 +3,7 @@
     public class Grid
 	{
 		private readonly IResolver _resolver;
+		private readonly ISteps _steps;
 		private readonly List<Row> _rows;
 		private readonly List<Column> _columns;
 		private readonly List<Box> _boxes;
@@ -11,9 +12,10 @@
 		public IReadOnlyList<Column> Columns => _columns;
 		public IReadOnlyList<Box> Boxes => _boxes;
 
-		public Grid(IResolver resolver)
+		public Grid(IResolver resolver, ISteps steps)
 		{
 			_resolver = resolver;
+			_steps = steps;
 			_rows = new List<Row>();
 			_columns = new List<Column>();
 			_boxes = new List<Box>();
@@ -63,7 +65,7 @@
 		{
 			for (int r = 1; r < 10; r++)
 			{
-				var row = new Row(_resolver);
+				var row = new Row(_resolver, _steps);
 
 				row.Initialise(r);
 

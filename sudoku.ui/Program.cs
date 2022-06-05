@@ -4,7 +4,7 @@ using sudoku.ui;
 Console.WriteLine("");
 Console.WriteLine("Sudoku resolver!");
 
-var grid = new Grid(new Resolver());
+var grid = new Grid(new Resolver(), new Steps());
 
 grid.Initialise();
 

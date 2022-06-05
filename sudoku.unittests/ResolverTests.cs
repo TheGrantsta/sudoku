@@ -19,7 +19,7 @@ namespace sudoku.unittests
         {
             Resolver resolver = new();
 
-            Row row = new(resolver);
+            Row row = new(resolver, new Steps());
 
             row.Initialise(2);
 

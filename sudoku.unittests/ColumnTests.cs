@@ -9,11 +9,13 @@ namespace sudoku.unittests
     public class ColumnTests
 	{
 		private readonly IResolver _resolver;
+		private readonly ISteps _steps;
 		private readonly List<Row> _rows;
 
 		public ColumnTests()
         {
 			_resolver = A.Fake<IResolver>();
+			_steps = A.Fake<ISteps>();
 
 			A.CallTo(() => _resolver.GetAllNumbers()).Returns(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
 			A.CallTo(() => _resolver.IsOneSquareEmpty(A<List<Square>>.Ignored)).Returns(true);
@@ -22,7 +24,7 @@ namespace sudoku.unittests
 
 			for(int x = 1; x < 10; x++)
             {
-				var row = new Row(_resolver);
+				var row = new Row(_resolver, _steps);
 
 				row.Initialise(x);
 

@@ -10,7 +10,7 @@ namespace sudoku.unittests
 		[Fact]
 		public void ShouldReturnEmptyRowsForGrid()
         {
-			var grid = new Grid(A.Fake<IResolver>());
+			var grid = new Grid(A.Fake<IResolver>(), A.Fake<ISteps>());
 
 			grid.Initialise();
 
@@ -21,7 +21,7 @@ namespace sudoku.unittests
 		[Fact]
 		public void ShouldSetInitialValueForCoordinate()
         {
-			var grid = new Grid(A.Fake<IResolver>());
+			var grid = new Grid(A.Fake<IResolver>(), A.Fake<ISteps>());
 
 			grid.Initialise();
 

@@ -3,13 +3,15 @@
     public class Row
 	{
 		private readonly IResolver _resolver;
+        private readonly ISteps _steps;
         private readonly List<Square> _squares;
 
         public IReadOnlyList<Square> Squares => _squares;
 
-		public Row(IResolver resolver)
+		public Row(IResolver resolver, ISteps steps)
         {
             _resolver = resolver;
+            _steps = steps;
             _squares = new List<Square>();
         }
 
@@ -19,7 +21,7 @@
             {
                 _squares.Add(
                     new Square(
-                        new Cell(),
+                        new Cell(_steps),
                         new Coordinate(i, x)));
             }
         }

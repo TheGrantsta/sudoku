@@ -2,6 +2,8 @@
 
 public class Cell
 {
+    private readonly ISteps _steps;
+
     private readonly List<CellNumber> _numbers;
 
     public IReadOnlyList<CellNumber> Numbers => _numbers;
@@ -18,8 +20,9 @@ public class Cell
         return false;
     }
 
-    public Cell()
+    public Cell(ISteps steps)
     {
+        _steps = steps;
         _numbers = new List<CellNumber>();
     }
 
@@ -28,7 +31,7 @@ public class Cell
         return _numbers.Single().Number;
     }
 
-    public void Set(int i)
+    public void Set(int i, bool isGuess = false)
     {
         if (IsOutOfRange(i))
         {
@@ -42,7 +45,9 @@ public class Cell
 
         Clear();
 
-        Add(i, false);
+        Add(i, isGuess);
+
+        _steps.Add("", i, isGuess);
     }
 
     public void Add(int i, bool isGuess = true)

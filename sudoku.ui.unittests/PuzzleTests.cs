@@ -9,7 +9,7 @@ public class PuzzleTests
 
     public PuzzleTests()
     {
-        _grid = new Grid(new Resolver());
+        _grid = new Grid(new Resolver(), new Steps());
 
         _grid.Initialise();
     }
