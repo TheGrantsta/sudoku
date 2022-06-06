@@ -9,16 +9,47 @@
 			_grid = grid;
 		}
 
-		public void Display()
+		public void Setup()
         {
-			Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Sudoku resolver!");
+            Console.WriteLine("");
             Console.WriteLine("  *|A||B||C|*|D||E||F|*|G||H||I|*");
             Console.Write("  *******************************");
 
             ((List<Row>)_grid.Rows).ForEach(s => RowOuput(s));
+
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("Hit ENTER key to see answer");
+            Console.ReadKey();
         }
 
-        public void ShowSteps()
+        public void Result()
+        {
+            bool isResolved = _grid.Resolve();
+
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("  *|A||B||C|*|D||E||F|*|G||H||I|*");
+            Console.Write("  *******************************");
+
+            ((List<Row>)_grid.Rows).ForEach(s => RowOuput(s));
+
+            if (isResolved)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("");
+                Console.WriteLine("Sudoku puzzle resolved!");
+            }
+
+            ShowSteps();
+
+            Console.WriteLine("");
+            Console.WriteLine("");
+        }
+
+        private void ShowSteps()
         {
             Console.WriteLine("");
             Console.WriteLine("Steps");

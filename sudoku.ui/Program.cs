@@ -1,9 +1,6 @@
 ﻿using sudoku;
 using sudoku.ui;
 
-Console.WriteLine("");
-Console.WriteLine("Sudoku resolver!");
-
 var grid = new Grid(new Resolver(), new Steps());
 
 grid.Initialise();
@@ -21,26 +18,6 @@ grid.Set(new[] { "742" });
 
 var render = new Render(grid);
 
-render.Display();
+render.Setup();
 
-Console.WriteLine("");
-Console.WriteLine("");
-Console.WriteLine("Hit ENTER key to see answer");
-Console.ReadKey();
-
-Console.WriteLine("");
-
-bool isResolved = grid.Resolve();
-
-render.Display();
-
-if (isResolved)
-{
-    Console.WriteLine("");
-    Console.WriteLine("Sudoku puzzle resolved!");
-}
-
-render.ShowSteps();
-
-Console.WriteLine("");
-Console.WriteLine("");
+render.Result();

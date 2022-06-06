@@ -27,11 +27,7 @@ public class PuzzleTests
         _grid.Set(new[] { "828", "834", "846", "879", "881" });
         _grid.Set(new[] { "923", "964", "976" });
 
-        var render = new Render(_grid);
-
         var isResolved = _grid.Resolve();
-
-        render.Display();
 
         isResolved.Should().BeTrue();
     }
@@ -50,11 +46,7 @@ public class PuzzleTests
         _grid.Set(new[] { "928", "937", "954", "969", "982" });
         _grid.Set(new[] { "742" });
 
-        var render = new Render(_grid);
-
         var isResolved = _grid.Resolve();
-
-        render.Display();
 
         isResolved.Should().BeTrue();
     }
@@ -72,11 +64,7 @@ public class PuzzleTests
         _grid.Set(new[] { "826", "854", "887" });
         _grid.Set(new[] { "918", "937", "952", "971" });
 
-        var render = new Render(_grid);
-
         var isResolved = _grid.Resolve();
-
-        render.Display();
 
         isResolved.Should().BeTrue();
     }
@@ -94,11 +82,7 @@ public class PuzzleTests
         _grid.Set(new[] { "823", "855", "898" });
         _grid.Set(new[] { "914", "928", "943", "982", "995" });
 
-        var render = new Render(_grid);
-
         var isResolved = _grid.Resolve();
-
-        render.Display();
 
         isResolved.Should().BeTrue();
     }
