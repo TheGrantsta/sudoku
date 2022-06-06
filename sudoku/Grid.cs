@@ -11,6 +11,7 @@
 		public IReadOnlyList<Row> Rows => _rows;
 		public IReadOnlyList<Column> Columns => _columns;
 		public IReadOnlyList<Box> Boxes => _boxes;
+		public ISteps Steps => _steps;
 
 		public Grid(IResolver resolver, ISteps steps)
 		{

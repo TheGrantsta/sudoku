@@ -40,5 +40,7 @@ if (isResolved)
     Console.WriteLine("Sudoku puzzle resolved!");
 }
 
+render.ShowSteps();
+
 Console.WriteLine("");
 Console.WriteLine("");

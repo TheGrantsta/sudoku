@@ -18,6 +18,33 @@
             ((List<Row>)_grid.Rows).ForEach(s => RowOuput(s));
         }
 
+        public void ShowSteps()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Steps");
+
+            var steps = _grid.Steps.Get();
+            var cnt = 1;
+
+            do
+            {
+                steps.TryDequeue(out Step step);
+
+                var foo = $"{cnt}: {step.Coordinate} -> {step.Value} / ";
+
+                if (cnt % 6 == 0)
+                {
+                    Console.WriteLine(foo);
+                }
+                else
+                {
+                    Console.Write(foo);
+                }
+
+                cnt++;
+            } while (!steps.IsEmpty);
+        }
+
 		private static void RowOuput(Row r)
         {
             Console.WriteLine("");
