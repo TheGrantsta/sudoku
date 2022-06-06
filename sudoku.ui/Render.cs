@@ -11,13 +11,7 @@
 
 		public void Setup()
         {
-            Console.WriteLine("");
-            Console.WriteLine("Sudoku resolver!");
-            Console.WriteLine("");
-            Console.WriteLine("  *|A||B||C|*|D||E||F|*|G||H||I|*");
-            Console.Write("  *******************************");
-
-            ((List<Row>)_grid.Rows).ForEach(s => RowOuput(s));
+            RenderGrid();
 
             Console.WriteLine("");
             Console.WriteLine("");
@@ -29,12 +23,7 @@
         {
             bool isResolved = _grid.Resolve();
 
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("  *|A||B||C|*|D||E||F|*|G||H||I|*");
-            Console.Write("  *******************************");
-
-            ((List<Row>)_grid.Rows).ForEach(s => RowOuput(s));
+            RenderGrid();
 
             if (isResolved)
             {
@@ -47,6 +36,17 @@
 
             Console.WriteLine("");
             Console.WriteLine("");
+        }
+
+        private void RenderGrid()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Sudoku resolver!");
+            Console.WriteLine("");
+            Console.WriteLine("  *|A||B||C|*|D||E||F|*|G||H||I|*");
+            Console.Write("  *******************************");
+
+            ((List<Row>)_grid.Rows).ForEach(s => RowOuput(s));
         }
 
         private void ShowSteps()
