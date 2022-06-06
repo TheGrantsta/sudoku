@@ -40,8 +40,6 @@
                 var square = _squares.Single(s => !s.Cell.IsNumberFound);
 
                 square.Cell.Set(missingNumber);
-
-                Console.Write($"(C) {square.Coordinate.DisplayName} - {missingNumber}; ");
             }
         }
     }
